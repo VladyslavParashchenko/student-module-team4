@@ -10,10 +10,10 @@
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <h:outputStylesheet library="css" name="default.css"/>
@@ -23,19 +23,21 @@
         <h:form>
             <p>
                 <h:inputText
-                             title="Student name"
-                             value="#{student.studentName}">
+                    title="Student name"
+                    value="#{student.studentName}">
                 </h:inputText>
-                
+
                 <h:inputText
-                             title="Student age"
-                             value="#{student.studentAge}">
+                    title="Student age"
+                    value="#{student.studentAge}">
                 </h:inputText>
 
                 <h:commandButton value="Save"
-                             action="#{student.saveStudent}"/>
+                                 action="#{student.saveStudent}"/>
             </p>
-         
+
         </h:form>
+
+        <div><p:spinner /></div>
     </h:body>
 </html>

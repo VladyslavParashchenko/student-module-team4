@@ -1,0 +1,30 @@
+.container {
+    background-color: rgb(191, 191, 191);
+}
+
+.subject-logo {
+    width: 256px;
+    height: 256px;
+}
+
+.subject-item {
+    padding: 20px;
+    border-bottom: solid 2px whitesmoke;
+}
+
+.lef-border {
+    border-left: solid 2px whitesmoke;
+}
+
+.small-image {
+    width: 96px;
+    height: 96px;
+}
+
+.ui-multiselectlistbox .ui-multiselectlistbox-listcontainer {
+    width: 50%;
+}
+
+.top-border {
+    border-top: solid 2px whitesmoke;
+}

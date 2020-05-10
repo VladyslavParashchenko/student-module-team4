@@ -20,7 +20,7 @@ import javax.ws.rs.client.Client;
 import sumdu.team4_project.ejb.StudentBean;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class Student implements Serializable {
 
     @EJB
@@ -46,7 +46,7 @@ public class Student implements Serializable {
     }
    
     private static final Logger logger 
-            = Logger.getLogger("com.vladyslav_parashchenko.dogs.web.DukesBDay");
+            = Logger.getLogger("com.team4.student_system.web.Student");
 
     public Student() {
     }

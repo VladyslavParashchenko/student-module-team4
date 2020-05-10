@@ -29,6 +29,10 @@ public class StudentEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
     @Column(name="name")
     protected String name;
     @Column(name="age")

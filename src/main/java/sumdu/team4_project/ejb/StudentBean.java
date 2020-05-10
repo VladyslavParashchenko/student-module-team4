@@ -36,4 +36,9 @@ public class StudentBean {
         Query query = em.createNamedQuery("AllStudents");
         return query.getResultList();
     }
+
+    public List<StudentEntity> getPotentialStudents (int subjectId, int lectorId) {
+        Query query = em.createNamedQuery("AllStudents");
+        return query.getResultList();
+    }
 }

@@ -46,18 +46,8 @@ public class Student implements Serializable {
     }
    
     private static final Logger logger 
-            = Logger.getLogger("com.team4.student_system.web.Student");
+            = Logger.getLogger("com.team4.student_system.web.StudentEntity");
 
     public Student() {
-    }
-    
-    public String saveStudent () {
-        studentBean.saveNewStudent(this.studentName, this.studentAge);
-        
-        return "/students.xthml";
-    }
-    
-    public List<Student> getStudents () {
-        return studentBean.getAllStudents();
     }
 }

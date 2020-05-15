@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "dep_emp", schema = "dbo")
+@Cacheable(false)
 public class Position implements Serializable {
 
 
@@ -18,37 +19,37 @@ public class Position implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn(name = "dep_id", referencedColumnName = "dep_id")
-    private Department workPlace;
+    private DepartmentEntity workPlace;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
-    private Employee worker;
+    private EmployeeEntity worker;
 
 
 
     public Position() {
     }
 
-    public Position(Department workPlace, Employee worker, String positionDescription) {
+    public Position(DepartmentEntity workPlace, EmployeeEntity worker, String positionDescription) {
         this.workPlace = workPlace;
         this.worker = worker;
         this.positionDescription = positionDescription;
     }
 
-    public Department getWorkPlace() {
+    public DepartmentEntity getWorkPlace() {
         return workPlace;
     }
 
-    public void setWorkPlace(Department workPlace) {
+    public void setWorkPlace(DepartmentEntity workPlace) {
         this.workPlace = workPlace;
     }
 
-    public Employee getWorker() {
+    public EmployeeEntity getWorker() {
         return worker;
     }
 
-    public void setWorker(Employee worker) {
+    public void setWorker(EmployeeEntity worker) {
         this.worker = worker;
     }
 

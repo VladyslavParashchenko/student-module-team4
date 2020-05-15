@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import sumdu.team4_project.entity.StudentEntity;
+
 import sumdu.team4_project.web.Student;
 
 @Stateless
@@ -26,19 +26,19 @@ public class StudentBean {
     private EntityManager em;
 
    
-    public void saveNewStudent(String name, int age) {
-        StudentEntity entity = new StudentEntity(name, age);
-        em.persist(entity);
-    }
-    
-
-    public List<Student> getAllStudents () {
-        Query query = em.createNamedQuery("AllStudents");
-        return query.getResultList();
-    }
-
-    public List<StudentEntity> getPotentialStudents (int subjectId, int lectorId) {
-        Query query = em.createNamedQuery("AllStudents");
-        return query.getResultList();
-    }
+//    public void saveNewStudent(String name, int age) {
+//        StudentEntity entity = new StudentEntity(name, age);
+//        em.persist(entity);
+//    }
+//
+//
+//    public List<Student> getAllStudents () {
+//        Query query = em.createNamedQuery("AllStudents");
+//        return query.getResultList();
+//    }
+//
+//    public List<StudentEntity> getPotentialStudents (int subjectId, int lectorId) {
+//        Query query = em.createNamedQuery("AllStudents");
+//        return query.getResultList();
+//    }
 }

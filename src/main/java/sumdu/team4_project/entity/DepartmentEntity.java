@@ -6,7 +6,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "departments", schema = "dbo")
-public class Department implements Serializable {
+@Cacheable(false)
+public class DepartmentEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,28 +24,28 @@ public class Department implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "parent_dep_id", referencedColumnName = "dep_id")
-    private Department parentDep;
+    private DepartmentEntity parentDep;
 
 
 
     @OneToMany(mappedBy = "parentDep")
-    private List<Department> childDeps;
+    private List<DepartmentEntity> childDeps;
 
     @OneToMany(mappedBy = "group")
-    private List<Student> studentsInGroup;
+    private List<StudentEntity> studentsInGroup;
 
     @OneToMany(mappedBy = "workPlace")
     private List<Position> employees;
 
     @OneToMany(mappedBy = "baseForCourse")
-    private List<Course> courses;
+    private List<CourseEntity> courses;
 
 
 
-    public Department() {
+    public DepartmentEntity() {
     }
 
-    public Department(String depName, String description) {
+    public DepartmentEntity(String depName, String description) {
         this.depName = depName;
         this.description = description;
     }
@@ -73,27 +74,27 @@ public class Department implements Serializable {
         this.description = description;
     }
 
-    public Department getParentDep() {
+    public DepartmentEntity getParentDep() {
         return parentDep;
     }
 
-    public void setParentDep(Department parentDep) {
+    public void setParentDep(DepartmentEntity parentDep) {
         this.parentDep = parentDep;
     }
 
-    public List<Department> getChildDeps() {
+    public List<DepartmentEntity> getChildDeps() {
         return childDeps;
     }
 
-    public void setChildDeps(List<Department> childDeps) {
+    public void setChildDeps(List<DepartmentEntity> childDeps) {
         this.childDeps = childDeps;
     }
 
-    public List<Student> getStudentsInGroup() {
+    public List<StudentEntity> getStudentsInGroup() {
         return studentsInGroup;
     }
 
-    public void setStudentsInGroup(List<Student> studentsInGroup) {
+    public void setStudentsInGroup(List<StudentEntity> studentsInGroup) {
         this.studentsInGroup = studentsInGroup;
     }
 
@@ -105,11 +106,11 @@ public class Department implements Serializable {
         this.employees = employees;
     }
 
-    public List<Course> getCourses() {
+    public List<CourseEntity> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(List<CourseEntity> courses) {
         this.courses = courses;
     }
 }

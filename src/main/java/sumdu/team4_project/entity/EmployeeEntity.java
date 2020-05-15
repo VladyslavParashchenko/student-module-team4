@@ -7,7 +7,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "employees", schema = "dbo")
-public class Employee implements Serializable {
+@NamedQueries({
+        @NamedQuery(name="Employee.potentialForCourse",
+                query="SELECT e FROM EmployeeEntity e")
+})
+@Cacheable(false)
+public class EmployeeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,7 +27,7 @@ public class Employee implements Serializable {
     @Id
     @OneToOne
     @JoinColumn(name = "emp_id", referencedColumnName = "person_id")
-    private Person personInfo;
+    private PersonEntity personInfo;
 
     @OneToMany(mappedBy = "worker")
     private List<Position> positions;
@@ -32,10 +37,10 @@ public class Employee implements Serializable {
 
 
 
-    public Employee() {
+    public EmployeeEntity() {
     }
 
-    public Employee(String skills, String characteristics, Person personInfo) {
+    public EmployeeEntity(String skills, String characteristics, PersonEntity personInfo) {
         this.skills = skills;
         this.characteristics = characteristics;
         this.personInfo = personInfo;
@@ -57,11 +62,11 @@ public class Employee implements Serializable {
         this.characteristics = characteristics;
     }
 
-    public Person getPersonInfo() {
+    public PersonEntity getPersonInfo() {
         return personInfo;
     }
 
-    public void setPersonInfo(Person personInfo) {
+    public void setPersonInfo(PersonEntity personInfo) {
         this.personInfo = personInfo;
     }
 
@@ -79,5 +84,10 @@ public class Employee implements Serializable {
 
     public void setCoursesRespFor(List<Responsibility> coursesRespFor) {
         this.coursesRespFor = coursesRespFor;
+    }
+
+    @Override
+    public String toString() {
+        return this.personInfo.getName();
     }
 }

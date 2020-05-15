@@ -6,7 +6,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "courses", schema = "dbo")
-public class Course implements Serializable {
+@NamedQueries({
+        @NamedQuery(name="CourseEntity.getAll",
+                query="SELECT c FROM CourseEntity c")
+})
+@Cacheable(false)
+public class CourseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,24 +26,34 @@ public class Course implements Serializable {
     @Column(name = "description")
     private String description;
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Column(name = "image")
+    private String image;
 
 
     @ManyToOne
     @JoinColumn(name = "base_for_course", referencedColumnName = "dep_id")
-    private Department baseForCourse;
+    private DepartmentEntity baseForCourse;
 
     @OneToMany(mappedBy = "courseRespFor")
     private List<Responsibility> employeesRespForCourse;
 
     @ManyToMany(mappedBy = "courses")
-    private List<Student> courseParticipants;
+    private List<StudentEntity> courseParticipants;
 
 
 
-    public Course() {
+    public CourseEntity() {
     }
 
-    public Course(String title, String description, Department baseForCourse) {
+    public CourseEntity(String title, String description, DepartmentEntity baseForCourse) {
         this.title = title;
         this.description = description;
         this.baseForCourse = baseForCourse;
@@ -60,11 +75,11 @@ public class Course implements Serializable {
         this.description = description;
     }
 
-    public Department getBaseForCourse() {
+    public DepartmentEntity getBaseForCourse() {
         return baseForCourse;
     }
 
-    public void setBaseForCourse(Department baseForCourse) {
+    public void setBaseForCourse(DepartmentEntity baseForCourse) {
         this.baseForCourse = baseForCourse;
     }
 

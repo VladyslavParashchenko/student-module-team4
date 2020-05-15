@@ -5,7 +5,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "persons", schema = "dbo")
-public class Person implements Serializable {
+@Cacheable(false)
+public class PersonEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,17 +27,17 @@ public class Person implements Serializable {
 
 
     @OneToOne(mappedBy = "personInfo")
-    private Student student;
+    private StudentEntity studentEntity;
 
     @OneToOne(mappedBy = "personInfo")
-    private Employee employee;
+    private EmployeeEntity employee;
 
 
 
-    public Person() {
+    public PersonEntity() {
     }
 
-    public Person(String firstName, String lastName, int age) {
+    public PersonEntity(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -66,19 +67,31 @@ public class Person implements Serializable {
         this.age = age;
     }
 
-    public Student getStudent() {
-        return student;
+    public StudentEntity getStudentEntity() {
+        return studentEntity;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentEntity(StudentEntity studentEntity) {
+        this.studentEntity = studentEntity;
     }
 
-    public Employee getEmployee() {
+    public EmployeeEntity getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeEntity employee) {
         this.employee = employee;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName () {
+        return this.firstName + " " + this.lastName;
     }
 }

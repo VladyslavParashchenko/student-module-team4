@@ -588,13 +588,13 @@ varchar(255)</title></a>
 	</tr>
 	<tr>
 		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
-		<td><a name='dbo.course_student_student_id'>student&#95;id</a></td>
+		<td><a name='dbo.course_student_student_id'>studentEntity&#95;id</a></td>
 		<td> numeric&#40;19&#44;0&#41;  </td>
 		<td>  </td>
 	</tr>
 <tr><th colspan='4'>Indexes</th></tr>
 	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;&#95;course&#95;s&#95;&#95;3DBDC7C76C2B89FC</td>
-		<td> ON course&#95;id&#44; student&#95;id</td>
+		<td> ON course&#95;id&#44; studentEntity&#95;id</td>
 		<td>  </td>
 	</tr>
 <tr><th colspan='4'>Foreign Keys</th></tr>
@@ -605,7 +605,7 @@ varchar(255)</title></a>
 	</tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>coursestudentstudentid</td>
-		<td > ( student&#95;id ) ref <a href='#dbo&#46;students'>students</a> (student&#95;id) </td>
+		<td > ( studentEntity&#95;id ) ref <a href='#dbo&#46;students'>students</a> (studentEntity&#95;id) </td>
 		<td>  </td>
 	</tr>
 </tbody>
@@ -832,7 +832,7 @@ varchar(255)</title></a>
 <tbody>
 	<tr>
 		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
-		<td><a name='dbo.students_student_id'>student&#95;id</a></td>
+		<td><a name='dbo.students_student_id'>studentEntity&#95;id</a></td>
 		<td> numeric&#40;19&#44;0&#41;  </td>
 		<td>  </td>
 	</tr>
@@ -850,7 +850,7 @@ varchar(255)</title></a>
 	</tr>
 <tr><th colspan='4'>Indexes</th></tr>
 	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;&#95;students&#95;&#95;2A33069A7A698C1F</td>
-		<td> ON student&#95;id</td>
+		<td> ON studentEntity&#95;id</td>
 		<td>  </td>
 	</tr>
 <tr><th colspan='4'>Foreign Keys</th></tr>
@@ -861,7 +861,7 @@ varchar(255)</title></a>
 	</tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_students_student_id</td>
-		<td > ( student&#95;id ) ref <a href='#dbo&#46;persons'>persons</a> (person&#95;id) </td>
+		<td > ( studentEntity&#95;id ) ref <a href='#dbo&#46;persons'>persons</a> (person&#95;id) </td>
 		<td>  </td>
 	</tr>
 </tbody>

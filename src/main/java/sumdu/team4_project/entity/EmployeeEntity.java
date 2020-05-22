@@ -7,9 +7,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "employees", schema = "dbo")
-@NamedQueries({
-        @NamedQuery(name="Employee.potentialForCourse",
-                query="SELECT e FROM EmployeeEntity e")
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                resultClass = EmployeeEntity.class,
+                name="Employee.potentialForCourse",
+                query="SELECT * FROM employees e left join course_emp c " +
+                        "on e.emp_id=c.emp_id and c.course_id = ? where c.emp_id is null")
 })
 @Cacheable(false)
 public class EmployeeEntity implements Serializable {

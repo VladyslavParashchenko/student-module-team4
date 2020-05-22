@@ -74,24 +74,6 @@ public class CourseEmployee implements Serializable {
         course = courseBean.removeEmployeeFromCourse(course, Long.parseLong(id));
     }
 
-    private List<SelectItem> transformStudentForCheckbox(List<EmployeeEntity> employee) {
-        ArrayList<SelectItem> items = new ArrayList<SelectItem>();
-        SelectItemGroup group = new SelectItemGroup();
-        for (EmployeeEntity employeeEntity : employee) {
-            items.add(
-                    new SelectItem(
-                            employeeEntity,
-                            employeeEntity.getPersonInfo().getName()
-                    ));
-        }
-        group.setSelectItems(items.toArray(new SelectItem[items.size()]));
-
-        List<SelectItem> list = new ArrayList<SelectItem>();
-        list.add(group);
-
-        return list;
-    }
-
     public String getEmployeeForRemove() {
         return employeeForRemove;
     }

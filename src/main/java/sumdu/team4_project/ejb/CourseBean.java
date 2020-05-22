@@ -3,10 +3,12 @@ package sumdu.team4_project.ejb;
 import sumdu.team4_project.entity.CourseEntity;
 import sumdu.team4_project.entity.EmployeeEntity;
 import sumdu.team4_project.entity.Responsibility;
+import sumdu.team4_project.entity.StudentEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,11 @@ public class CourseBean {
     }
 
     public List<EmployeeEntity> getPotentialEmployee(Long courseId) {
-        return em.createNamedQuery("Employee.potentialForCourse").getResultList();
+        Query query = em
+                .createNamedQuery("Employee.potentialForCourse", StudentEntity.class)
+                .setParameter(1, courseId);
+
+        return query.getResultList();
     }
 
     public void addEmployeeToCourse(CourseEntity course, List<EmployeeEntity> employeeEntities) {

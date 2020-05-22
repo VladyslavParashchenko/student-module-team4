@@ -41,11 +41,11 @@
                 <h2>Викладач:</h2>
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="#{subjectStudentLector.getLector().getImage()}"
+                        <img src="#{subjectStudent.getLector().getImage()}"
                              alt="lector-photo"></img>
                     </div>
                     <div class="col-md-9">
-                        <h3>#{subjectStudentLector.getLector().getName()}</h3>
+                        <h3>#{subjectStudent.getLector().getName()}</h3>
                     </div>
                 </div>
             </div>
@@ -55,12 +55,12 @@
                 <div class="row">
                     <div class="col-md-3">
                         <img class='mt-2 small-image'
-                             src="#{subjectStudentLector.getSubject().getImage()}"
+                             src="#{subjectStudent.getSubject().getImage()}"
                              alt="lector-photo"></img>
                     </div>
                     <div class="col-md-9">
-                        <h3>#{subjectStudentLector.getSubject().getTitle()}</h3>
-                        <p>#{subjectStudentLector.getSubject().getDescription()}</p>
+                        <h3>#{subjectStudent.getSubject().getTitle()}</h3>
+                        <p>#{subjectStudent.getSubject().getDescription()}</p>
                     </div>
                 </div>
             </div>
@@ -75,26 +75,26 @@
                 <h:form>
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputLabel for="multiple" value="Нові студенти:" />
-                        <p:selectCheckboxMenu id="multiple" value="#{subjectStudentLector.newStudents}" label="" multiple="true"
+                        <p:selectCheckboxMenu id="multiple" value="#{subjectStudent.newStudents}" label="" multiple="true"
                                               filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                            <f:selectItems value="#{subjectStudentLector.potentialStudents}" />
+                            <f:selectItems value="#{subjectStudent.potentialStudents}" />
                         </p:selectCheckboxMenu>
                     </h:panelGrid>
 
-                    <p:commandButton styleClass="ml-2" value="Додати до курсу" action="#{subjectStudentLector.addStudents}" />
+                    <p:commandButton styleClass="ml-2" value="Додати до курсу" action="#{subjectStudent.addStudents}" />
                 </h:form>
             </div>
             <div class="col">
                 <h:form>
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputLabel for="multiple" value="Підключені студенти:" />
-                        <p:selectCheckboxMenu id="multiple" value="#{subjectStudentLector.studentsForRemove}" label="" multiple="true"
+                        <p:selectCheckboxMenu id="multiple" value="#{subjectStudent.studentsForRemove}" label="" multiple="true"
                                               filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                            <f:selectItems value="#{subjectStudentLector.connectedStudents}" />
+                            <f:selectItems value="#{subjectStudent.connectedStudents}" />
                         </p:selectCheckboxMenu>
                     </h:panelGrid>
 
-                    <p:commandButton styleClass="ml-2" value="Видалити з курсу" action="#{subjectStudentLector.removeStudents}" />
+                    <p:commandButton styleClass="ml-2" value="Видалити з курсу" action="#{subjectStudent.removeStudents}" />
                 </h:form>
             </div>
         </div>

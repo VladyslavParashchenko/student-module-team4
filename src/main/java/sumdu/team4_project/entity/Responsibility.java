@@ -7,7 +7,8 @@ import java.io.Serializable;
 @Table(name = "course_emp", schema = "dbo")
 @NamedQueries({
         @NamedQuery(name="Responsibility.RmById",
-                query="DELETE from Responsibility  r where r.id =:id")})
+                query="DELETE from Responsibility  r where r.id =:id")
+})
 @Cacheable(false)
 public class Responsibility implements Serializable {
 

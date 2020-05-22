@@ -98,4 +98,12 @@ public class CourseEntity implements Serializable {
     public void setEmployeesRespForCourse(List<Responsibility> employeesRespForCourse) {
         this.employeesRespForCourse = employeesRespForCourse;
     }
+
+    public List<StudentEntity> getCourseParticipants() {
+        return courseParticipants;
+    }
+
+    public void setCourseParticipants(List<StudentEntity> courseParticipants) {
+        this.courseParticipants = courseParticipants;
+    }
 }

@@ -21,11 +21,10 @@ public class Subject implements Serializable {
     private List<CourseEntity> courses;
 
     public Subject() {
-
     }
 
     @PostConstruct
-    public void init () {
+    public void init() {
         this.courses = subjectBean.getCourses();
     }
 

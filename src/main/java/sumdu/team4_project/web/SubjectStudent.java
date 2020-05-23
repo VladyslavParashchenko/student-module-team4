@@ -117,11 +117,11 @@ public class SubjectStudent implements Serializable {
 
     public String addStudents() {
         studentBean.addStudentToCourse(subject, newStudents);
-        return "/index.xhtml";
+        return "index.xhtml?faces-redirect=true";
     }
 
     public String removeStudents() {
         studentBean.removeStudentsFromCourse(subject, studentsForRemove);
-        return "/index.xhtml";
+        return "index.xhtml?faces-redirect=true";
     }
 }

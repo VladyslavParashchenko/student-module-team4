@@ -13,12 +13,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import sumdu.team4_project.entity.CourseEntity;
-import sumdu.team4_project.entity.EmployeeEntity;
 import sumdu.team4_project.entity.StudentEntity;
-import sumdu.team4_project.web.Student;
 
 @Stateless
 public class StudentBean {
@@ -37,7 +34,6 @@ public class StudentBean {
         return query.getResultList();
     }
 
-    @Transactional
     public List<StudentEntity> getPotentialStudents (CourseEntity courseEntity) {
         Query query = em
                 .createNamedQuery("StudentEntity.PotentialStudent", StudentEntity.class)
@@ -46,7 +42,6 @@ public class StudentBean {
         return query.getResultList();
     }
 
-    @Transactional
     public void addStudentToCourse (CourseEntity courseEntity, List<StudentEntity> studentEntities)  {
         for(StudentEntity student: studentEntities) {
             student.getCourses().add(courseEntity);
@@ -56,7 +51,6 @@ public class StudentBean {
         em.merge(courseEntity);
     }
 
-    @Transactional
     public void removeStudentsFromCourse(CourseEntity subject, List<StudentEntity> studentsForRemove) {
         for(StudentEntity studentEntity:studentsForRemove) {
             em

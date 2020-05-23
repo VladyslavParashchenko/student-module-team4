@@ -31,13 +31,11 @@ public class CourseBean {
         return query.getResultList();
     }
 
-    public void addEmployeeToCourse(CourseEntity course, List<EmployeeEntity> employeeEntities) {
+    public void addEmployeeToCourse(CourseEntity course, EmployeeEntity employee, String role) {
         List<Responsibility> responsibilities = course.getEmployeesRespForCourse();
-        for (EmployeeEntity entity : employeeEntities) {
-            Responsibility responsibility = new Responsibility("", entity, course);
-            responsibilities.add(responsibility);
-            em.persist(responsibility);
-        }
+        Responsibility responsibility = new Responsibility(role, employee, course);
+        responsibilities.add(responsibility);
+        em.persist(responsibility);
         em.merge(course);
     }
 

@@ -1,6 +1,7 @@
 package sumdu.team4_project.web;
 
 import sumdu.team4_project.ejb.CourseBean;
+import sumdu.team4_project.ejb.EmployeeBean;
 import sumdu.team4_project.entity.CourseEntity;
 import sumdu.team4_project.entity.EmployeeEntity;
 
@@ -24,9 +25,14 @@ public class CourseEmployee implements Serializable {
     @EJB
     CourseBean courseBean;
 
+    @EJB
+    EmployeeBean employeeBean;
+
     private CourseEntity course;
-    private List<EmployeeEntity> newEmployee;
-    private List<EmployeeEntity> potentialEmployee;
+    private Long newEmployeeId;
+    private String newEmployeeRole;
+
+    private List<SelectItem> potentialEmployeeItems;
     private String employeeForRemove;
 
     public CourseEntity getCourse() {
@@ -45,29 +51,14 @@ public class CourseEmployee implements Serializable {
         if(params.containsKey("course_id")) {
             Long courseId = Long.parseLong(params.get("course_id"));
             setCourse(courseBean.find(courseId));
-            potentialEmployee = courseBean.getPotentialEmployee(courseId);
+            setPotentialEmployeeItems(courseBean.getPotentialEmployee(courseId));
         }
     }
 
-    public List<EmployeeEntity> getNewEmployee() {
-        return newEmployee;
-    }
-
-    public void setNewEmployee(List<EmployeeEntity> newEmployee) {
-        this.newEmployee = newEmployee;
-    }
-
-    public List<EmployeeEntity> getPotentialEmployee() {
-        return potentialEmployee;
-    }
-
-    public void setPotentialEmployee (List<EmployeeEntity> potentialEmployee) {
-        this.potentialEmployee = potentialEmployee;
-    }
-
     public String addEmployeeToSubject () {
-        courseBean.addEmployeeToCourse(course, newEmployee);
-        return "index.xhtml";
+        EmployeeEntity employeeEntity = employeeBean.find(newEmployeeId);
+        courseBean.addEmployeeToCourse(course, employeeEntity, newEmployeeRole);
+        return "index.xhtml?faces-redirect=true";
     }
 
     public void removeEmployee(String id) {
@@ -80,5 +71,34 @@ public class CourseEmployee implements Serializable {
 
     public void setEmployeeForRemove(String employeeForRemove) {
         this.employeeForRemove = employeeForRemove;
+    }
+
+    public Long getNewEmployeeId() {
+        return newEmployeeId;
+    }
+
+    public void setNewEmployeeId(Long newEmployeeId) {
+        this.newEmployeeId = newEmployeeId;
+    }
+
+    public String getNewEmployeeRole() {
+        return newEmployeeRole;
+    }
+
+    public void setNewEmployeeRole(String newEmployeeRole) {
+        this.newEmployeeRole = newEmployeeRole;
+    }
+
+    public List<SelectItem> getPotentialEmployeeItems() {
+
+        return potentialEmployeeItems;
+    }
+
+    public void setPotentialEmployeeItems(List<EmployeeEntity> potentialEmployee) {
+        ArrayList<SelectItem> items = new ArrayList<SelectItem>();
+        for(EmployeeEntity emp:potentialEmployee) {
+            items.add(new SelectItem(emp.getPersonInfo().getId(), emp.toString()));
+        }
+        this.potentialEmployeeItems = items;
     }
 }

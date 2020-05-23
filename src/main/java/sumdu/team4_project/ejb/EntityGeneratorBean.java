@@ -15,7 +15,7 @@ public class EntityGeneratorBean {
     private EntityManager em;
     private Faker faker;
 
-    public void generateEntitites () {
+    public void generateEntitites() {
         faker = new Faker();
 
         DepartmentEntity faculty = new DepartmentEntity();
@@ -28,7 +28,7 @@ public class EntityGeneratorBean {
         em.persist(group2);
 
         List<StudentEntity> students = new ArrayList<StudentEntity>();
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             PersonEntity personEntity = generatePerson();
             em.persist(personEntity);
             DepartmentEntity group = i % 2 == 0 ? group1 : group2;
@@ -39,14 +39,14 @@ public class EntityGeneratorBean {
         }
 
         List<CourseEntity> courses = new ArrayList<CourseEntity>();
-        for(int i = 0; i < 10; i++) {
-            CourseEntity c = generateCourse(faculty);
+        for (int i = 0; i < 10; i++) {
+            CourseEntity c = generateCourse(faculty, i);
             em.persist(c);
             courses.add(c);
         }
 
         List<EmployeeEntity> employers = new ArrayList<EmployeeEntity>();
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             PersonEntity personEntity = generatePerson();
             em.persist(personEntity);
             EmployeeEntity employee = generateEmptyee(personEntity);
@@ -56,10 +56,9 @@ public class EntityGeneratorBean {
         }
 
 
-
     }
 
-    private EmployeeEntity generateEmptyee (PersonEntity personEntity) {
+    private EmployeeEntity generateEmptyee(PersonEntity personEntity) {
         EmployeeEntity employee = new EmployeeEntity();
         employee.setPersonInfo(personEntity);
 
@@ -67,7 +66,7 @@ public class EntityGeneratorBean {
     }
 
 
-    private PersonEntity generatePerson () {
+    private PersonEntity generatePerson() {
         PersonEntity person = new PersonEntity();
         person.setFirstName(faker.name().firstName());
         person.setLastName(faker.name().lastName());
@@ -76,7 +75,7 @@ public class EntityGeneratorBean {
         return person;
     }
 
-    private DepartmentEntity generateGroup (DepartmentEntity faculty) {
+    private DepartmentEntity generateGroup(DepartmentEntity faculty) {
         DepartmentEntity group = new DepartmentEntity();
         group.setDepName("IH-" + faker.random().nextInt(20, 50));
         group.setDescription("Group IH-" + faker.random().nextInt(20, 50));
@@ -85,7 +84,7 @@ public class EntityGeneratorBean {
         return group;
     }
 
-    private StudentEntity generateStudent (DepartmentEntity group, PersonEntity person) {
+    private StudentEntity generateStudent(DepartmentEntity group, PersonEntity person) {
         StudentEntity studentEntity = new StudentEntity();
         studentEntity.setGroup(group);
         studentEntity.setPersonInfo(person);
@@ -93,13 +92,14 @@ public class EntityGeneratorBean {
         return studentEntity;
     }
 
-    private CourseEntity generateCourse (DepartmentEntity faculty) {
+    private CourseEntity generateCourse(DepartmentEntity faculty, int index) {
+        index += 1;
         CourseEntity courseEntity = new CourseEntity(
-                "Subject #" + faker.number().randomDigit(),
+                "Subject #" + index,
                 faker.lorem().paragraph(),
                 faculty
         );
-        courseEntity.setImage("https://w7.pngwing.com/pngs/684/622/png-transparent-logo-subject-english-miscellaneous-blue-building.png");
+        courseEntity.setImage(index + ".jpg");
 
         return courseEntity;
     }

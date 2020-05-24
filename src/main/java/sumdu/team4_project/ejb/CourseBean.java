@@ -23,6 +23,10 @@ public class CourseBean {
         return em.find(CourseEntity.class, id);
     }
 
+    public List<CourseEntity> getCourses () {
+        return em.createNamedQuery("CourseEntity.getAll").getResultList();
+    }
+
     public List<EmployeeEntity> getPotentialEmployee(Long courseId) {
         Query query = em
                 .createNamedQuery("Employee.potentialForCourse", StudentEntity.class)

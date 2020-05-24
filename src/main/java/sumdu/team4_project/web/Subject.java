@@ -1,15 +1,13 @@
 package sumdu.team4_project.web;
 
-import sumdu.team4_project.ejb.SubjectBean;
+import sumdu.team4_project.ejb.CourseBean;
 import sumdu.team4_project.entity.CourseEntity;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -17,7 +15,7 @@ import java.util.List;
 public class Subject implements Serializable {
 
     @EJB
-    SubjectBean subjectBean;
+    CourseBean courseBean;
     private List<CourseEntity> courses;
 
     public Subject() {
@@ -25,7 +23,7 @@ public class Subject implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.courses = subjectBean.getCourses();
+        this.courses = courseBean.getCourses();
     }
 
 

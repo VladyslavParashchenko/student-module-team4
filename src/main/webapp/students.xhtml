@@ -52,8 +52,8 @@
                 <div class="row">
                     <div class="col-md-3">
                         <img class='mt-2 small-image'
-                             src="#{subjectStudent.getSubject().getImage()}"
-                             alt="lector-photo"></img>
+                             src="#{request.contextPath}/resources/images/#{subjectStudent.getSubject().getImage()}"
+                             alt="course-image"></img>
                     </div>
                     <div class="col-md-9">
                         <h3>#{subjectStudent.getSubject().getTitle()}</h3>

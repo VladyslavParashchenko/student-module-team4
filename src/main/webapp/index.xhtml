@@ -18,6 +18,8 @@
 
 <h:head>
     <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"/>
+    <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"></link>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
             type="javascript"></script>
@@ -28,52 +30,46 @@
 </h:head>
 <h:body>
     <div class="container px-0">
-        <div class="navbar bg-primary navbar-dark navbar-fixed-top">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-            </ul>
-        </div>
+        <ui:include src="partitials/header.xhtml"></ui:include>
         <div class="row">
-            <div class="col">
+            <div class="col px-5">
                 <ui:repeat var="subjectItem"
-                           value="#{subject.getSubjects()}">
+                           value="#{subject.courses}">
                     <div class="row subject-item">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <img class="mt-3 subject-logo"
-                                 src="#{subjectItem.getImage()}"
+                                 src="#{request.contextPath}/resources/images/#{subjectItem.getImage()}"
                                  alt="subject-image"></img>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <h3>#{subjectItem.getTitle()}</h3>
                             <p>#{subjectItem.getDescription()}</p>
+                            <p>Студентів на курсі: #{subjectItem.getCourseParticipants().size()}</p>
                             <div class="row align-items-center">
-                                <div class="col">
-                                    <ui:repeat var="lector"
-                                               value="#{subjectItem.getLectors()}">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5>#{lector.getName()}</h5>
-                                                <h:link styleClass="btn btn-success"
-                                                        value="Додати студента"
-                                                        outcome="/students.xhtml">
-                                                    <f:param
-                                                            name="subject"
-                                                            value="#{subjectItem.getId()}"/>
-                                                    <f:param
-                                                            name="lector"
-                                                            value="#{lector.getId()}"/>
-                                                </h:link>
-                                            </div>
-                                        </div>
-                                    </ui:repeat>
+                                <div class="col-md-8">
+                            <span>
+                                <h:outputText
+                                        rendered="#{not empty subjectItem.getEmployeesRespForCourse()}"
+                                        value="Викладачі: "/>
+                            </span>
+                                    <ul>
+                                        <ui:repeat var="responsibility"
+                                                   value="#{subjectItem.getEmployeesRespForCourse()}">
+                                            <li>#{responsibility.getRespPerson().getPersonInfo().getName()} - #{responsibility.responsibilityDescr}</li>
+                                        </ui:repeat>
+                                    </ul>
                                 </div>
-                                <div class="col">
-                                    <h:link styleClass="btn btn-success"
+                                <div class="col-md-4">
+                                    <h:link styleClass="btn btn-success btn-block"
                                             value="Додати викладача"
-                                            outcome="/lector.xhtml">
-                                        <f:param name="subject"
+                                            outcome="/add-lector.xhtml">
+                                        <f:param name="course_id"
+                                                 value="#{subjectItem.getId()}"/>
+                                    </h:link>
+                                    <h:link styleClass="btn btn-success btn-block"
+                                            value="Додати студентів"
+                                            outcome="/students.xhtml">
+                                        <f:param name="course_id"
                                                  value="#{subjectItem.getId()}"/>
                                     </h:link>
                                 </div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+                 version="1.0">
+    <entity class="sumdu.team4_project.entity.PersonEntity"/>
+    <entity class="sumdu.team4_project.entity.DepartmentEntity"/>
+    <entity class="sumdu.team4_project.entity.CourseEntity"/>
+    <entity class="sumdu.team4_project.entity.StudentEntity"/>
+    <entity class="sumdu.team4_project.entity.EmployeeEntity"/>
+    <entity class="sumdu.team4_project.entity.Position"/>
+    <entity class="sumdu.team4_project.entity.Responsibility"/>
+
+</entity-mappings>
